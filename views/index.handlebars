@@ -1,0 +1,34 @@
+{{#each articles}}
+<div class="row no-gutters article-item" id={{_id}}>
+    <div class="col-md-4">
+        <a href={{link}}>
+            <img src={{image}} class="card-img" alt="{{title}}">
+        </a>
+    </div>
+    <div class="col-md-8">
+        <div class="card-body article-info">
+            <a href={{link}}>
+                <h5 class="card-title">{{title}}</h5>
+            </a>
+            <p class="card-text">{{summary}}</p>
+            <p class=" card-text"><small class="text-muted">{{author}} | {{readTime}}</small></p>
+            <button class="btn btn-info comment-btn" state="hidden" article-id="{{_id}}">View Comments</button>
+        </div>
+        <div class="comment-section">
+            <div class="previous-comments" article-id="{{_id}}">
+
+            </div>
+            
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control name-input" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control comment-input" rows="3" placeholder="Leave a comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success float-right submit-btn" article-id="{{_id}}">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{/each}}
