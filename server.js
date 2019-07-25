@@ -20,13 +20,13 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/entrepreneur";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sports";
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
 
 /*
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/entrepreneur", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/sports", { useNewUrlParser: true });
 */
 
 // Routes
