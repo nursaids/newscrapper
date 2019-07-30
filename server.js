@@ -3,35 +3,46 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 
+//scrping tools
+const axios = require("axios");
+const cheerio = require("cheerio");
 
+//require all models
 const db = require("./models");
 
-const PORT = (process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
 
+//initialize express
 const app = express();
 
+//configure middleware
+
+//use morgan logger for logging requests
 app.use(logger("dev"));
-
-app.use(express.urlencoded({extended: true}));
+//parse request body as JSON
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//make public a static folder
 app.use(express.static("public"));
+app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
-app.engine("handlebars", exphbs({defaultLayout: "main"}));
-app.set("view engine", "handlebars");
+//connect to the Mongo DB - if deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/sports";
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+mongoose.connect(MONGODB_URI, { 
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+ });
 
+//routes
+const routes = require("./routes/index");
+app.use(routes);
 
-/*
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/sports", { useNewUrlParser: true });
-*/
-
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
-// Start the server
-app.listen(PORT, () => console.log(`App running on http://localhost:${PORT}`));
+// start the server
+app.listen(PORT, () => {
+  console.log(
+      `===> 🌎 Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+  );
+});
