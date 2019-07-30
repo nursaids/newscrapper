@@ -9,32 +9,37 @@ const ArticleSchema = new Schema({
     },
     summary: {
         type: String,
-        required: true
+        default: "Summary not available."
     },
-    author: {
-        type: String,
-        required: true
-    },
-    readTime: {
-        type: String,
-        required: true
-    },
+    // link is type string and required
     link: {
         type: String,
+        unique: true,
         required: true
     },
     image: {
-        type: String,
-        required: true
+        type: String
     },
-    comments: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Comment"
-        }
-    ]
-    
-    
+    saved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    deleted: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    // note is object that stores a Note id. The ref property links the ObjectId to the Note model and allows us to populate the Article with an associated Note
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note",
+        required: false
+    }]
     
 });
 
