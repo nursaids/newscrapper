@@ -2,11 +2,11 @@
   "name": "newscrapper",
   "version": "1.0.0",
   "description": "Web scraper that stores data into a Mongo database",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "watch": "nodemon server"
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,11 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "lodash": "^4.17.14",
     "mongoose": "^5.6.2",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
   }
 }
