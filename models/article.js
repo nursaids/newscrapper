@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
+//save reference to Schema constructor
 const Schema = mongoose.Schema;
 
+//create new ArticleSchema object using Schema constructor
 const ArticleSchema = new Schema({
+    // title is type string and required
     title: {
         type: String,
         required: true
@@ -40,9 +43,10 @@ const ArticleSchema = new Schema({
         ref: "Note",
         required: false
     }]
-    
 });
 
+// creates model from the above schema
 const Article = mongoose.model("Article", ArticleSchema);
 
+//export the Article model
 module.exports = Article;

@@ -17,8 +17,8 @@ router.get("/", (req, res) => {
             } else {
                 console.log(articles);
                 let hbsObj = {
-                    title: "Daily Sports News ",
-                    subtitle: "New York Times ",
+                    title: "Your Daily Sports Scraped",
+                    subtitle: "NY Times Sports",
                     articles: articles
                 };
                 res.render("index", hbsObj);
@@ -41,8 +41,8 @@ router.get("/saved", (req, res) => {
             } else {
                 console.log(articles);
                 let hbsObj = {
-                    title: "Your Saved News",
-                    subtitle: "New York Times Sports",
+                    title: "Your Daily Sports Scraped",
+                    subtitle: "NY Times Sports",
                     articles: articles 
                 };
                 res.render("saved", hbsObj);
